@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns ="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Kour.HomePage">
+	<ContentPage.Content>
+		<Grid
+			Padding="0">
+			<Image
+				Source           ="bg_splash.png"
+				VerticalOptions  ="FillAndExpand"
+				HorizontalOptions="FillAndExpand"
+				Aspect           ="Fill" />
+			<Grid
+				Margin="30,60,30,60">
+				<Grid.RowDefinitions>
+					<RowDefinition
+						Height="1*" />
+					<RowDefinition
+						Height="1*" />
+					<RowDefinition
+						Height="1*" />
+				</Grid.RowDefinitions>
+				<Image
+					Grid.Row         ="0"
+					Source           ="kour_logo.png"
+					HorizontalOptions="Center"
+					VerticalOptions  ="Center"
+					HeightRequest    ="160"
+					WidthRequest     ="160" />
+				<Button
+					Grid.Row         ="1"
+					Text             ="Iniciar Sesión"
+					TextColor        ="Gray"
+					HorizontalOptions="Center"
+					Margin           ="0"
+					Clicked          ="LoginClicked"
+					BackgroundColor  ="Transparent"
+					VerticalOptions  ="Center" />
+				<Button
+					Grid.Row         ="2"
+					Text             ="Registrar"
+					TextColor        ="Gray"
+					HorizontalOptions="Center"
+					Margin           ="0"
+					Clicked          ="SignUpClicked"
+					BackgroundColor  ="Transparent"
+					VerticalOptions  ="Start" />
+			</Grid>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

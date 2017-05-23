@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns ="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Kour.LoginPage">
+	<ContentPage.Content>
+		<Grid
+			Padding="0">
+			<Image
+				Source           ="background.png"
+				VerticalOptions  ="FillAndExpand"
+				HorizontalOptions="FillAndExpand"
+				Aspect           ="Fill" />
+			<StackLayout
+				Grid.Row         ="0"
+				Spacing          ="10"
+				VerticalOptions  ="FillAndExpand"
+				HorizontalOptions="FillAndExpand"
+				Margin           ="20,30,20,30">
+				<Image
+					Source           ="closeW.png"
+					HeightRequest    ="40"
+					WidthRequest     ="25"
+					HorizontalOptions="Start">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer
+							Tapped="CloseClicked" />
+					</Image.GestureRecognizers>
+				</Image>
+				<Grid
+					Padding="0">
+					<!--<Image Source="background.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="Fill" />-->
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition
+								Height="1*" />
+							<RowDefinition
+								Height="Auto" />
+						</Grid.RowDefinitions>
+						<StackLayout
+							Grid.Row       ="0"
+							Spacing        ="10"
+							VerticalOptions="Center"
+							Margin         ="20,30,20,30">
+							<Image
+								Source           ="kour_logo.png"
+								HorizontalOptions="Center"
+								HeightRequest    ="130"
+								WidthRequest     ="130" />
+							<Frame
+								BackgroundColor="White"
+								Padding        ="5"
+								Margin= "0,20,0,0">
+								<Frame.Content>
+									<StackLayout
+										Orientation="Horizontal"
+										>
+										<Image
+											Source       ="userBlack.png"
+											WidthRequest ="20"
+											HeightRequest="20" />
+										<Entry
+											x:Name           ="_email"
+											Placeholder      ="Email"
+											HorizontalOptions="FillAndExpand"
+											Margin           ="5,0,0,0" />
+									</StackLayout>
+								</Frame.Content>
+							</Frame>
+							<Frame
+								BackgroundColor="White"
+								Padding        ="5">
+								<Frame.Content>
+									<StackLayout
+										Orientation="Horizontal">
+										<Image
+											Source       ="secureB.png"
+											WidthRequest ="20"
+											HeightRequest="20" />
+										<Entry
+											x:Name           ="_pass"
+											Placeholder      ="Contraseña"
+											HorizontalOptions="FillAndExpand"
+											Margin           ="5,0,0,0"
+											IsPassword       ="true" />
+									</StackLayout>
+								</Frame.Content>
+							</Frame>
+							<Button
+								Text             ="ENTRAR"
+								TextColor        ="White"
+								HorizontalOptions="FillAndExpand"
+								Margin           ="0"
+								Clicked          ="LoginClicked"
+								BackgroundColor  ="#FF6F32"
+								VerticalOptions  ="End" />
+							<Button
+								x:Name         ="_forgot_password"
+								HeightRequest  ="50"
+								Text           ="¿Olvidaste tu contraseña?"
+								TextColor      ="Green"
+								BackgroundColor="Transparent" />
+						</StackLayout>
+						<StackLayout
+							VerticalOptions="End"
+							Grid.Row       ="1"
+							Spacing        ="10"
+							Padding        ="20,10,20,30">
+							<Button
+							Text             ="Continue with Facebook"
+							TextColor        ="White"
+							HorizontalOptions="FillAndExpand"
+							Margin           ="0"
+							BackgroundColor  ="#324FA5"
+							VerticalOptions  ="Start" />
+						</StackLayout>
+					</Grid>
+				</Grid>
+			</StackLayout>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Kour.ConductoresPage"
+		xmlns:local="clr-namespace:Kour" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+	<ContentPage.Content>
+		<StackLayout HorizontalOptions="FillAndExpand" Spacing="0"> 
+			<StackLayout Padding="8,20,8,8" BackgroundColor="#F9F9F9" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+				<Image Source="back.png" WidthRequest="28" HeightRequest="28" >
+						<Image.GestureRecognizers>
+							<TapGestureRecognizer Tapped="CloseClicked" />
+						</Image.GestureRecognizers>
+					</Image>
+				<Label Text="Selecciona tu Kourer" TextColor="#FF6833" VerticalOptions="Center" Margin="10" />
+			</StackLayout>
+			<BoxView HeightRequest="1" BackgroundColor="#C1C1C1" />
+			<ListView x:Name="_listView" BackgroundColor="Transparent" Margin="0,15,0,0" VerticalOptions="FillAndExpand" HasUnevenRows="true" SeparatorColor="#D5D5D5">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Spacing="15" Padding="8" BackgroundColor="White">
+								<ffimageloading:CachedImage x:Name="_centerPin" Source="addPhoto.png" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true">
+									<ffimageloading:CachedImage.Transformations>
+										<fftransformations:CircleTransformation />
+									</ffimageloading:CachedImage.Transformations>
+								</ffimageloading:CachedImage>
+								<StackLayout Orientation="Vertical" Spacing="5" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+									<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+										<Label Text="Oscar B" FontSize="20" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+										<Label Text="$20" FontSize="19" VerticalOptions="Center" Margin="0,0,30,0" />
+									</StackLayout>
+									<StackLayout Orientation="Horizontal">
+										<Image Source="star_rating" HeightRequest="20" WidthRequest="20" />
+										<Label Text="5" FontSize="18" VerticalOptions="Center" />
+									</StackLayout>
+								</StackLayout>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+				<ListView.Footer>
+					<BoxView HeightRequest="0" />
+				</ListView.Footer>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

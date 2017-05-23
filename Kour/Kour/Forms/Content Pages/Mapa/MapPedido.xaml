@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Kour.MapPedido" xmlns:local="clr-namespace:Kour" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" xmlns:tkmap="clr-namespace:TK.CustomMap;assembly=TK.CustomMap" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+	<ContentPage.Content>
+		<Grid Padding="0">
+			<Grid.Margin>
+				<OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" Android="0,0,0,0" />
+			</Grid.Margin>
+			<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+				<tkmap:TKCustomMap x:Name="_map" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" MapType="Street" IsShowingUser="true" />
+				<ffimageloading:CachedImage x:Name="_centerPin" Source="ic_place_orange.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center" Margin="0,0,0,34" VerticalOptions="Center" DownsampleToViewSize="true">
+					<ffimageloading:CachedImage.GestureRecognizers>
+						<TapGestureRecognizer Tapped="MarcadorClicked" />
+					</ffimageloading:CachedImage.GestureRecognizers>
+				</ffimageloading:CachedImage>
+				<BoxView x:Name="_boxCenter" HeightRequest="4" WidthRequest="4" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#FE7400" />
+			</Grid>
+			<StackLayout x:Name="_topContainer" Spacing="5" VerticalOptions="Start" Padding="8" IsVisible="true" Orientation="Horizontal" BackgroundColor="White" HeightRequest="36">
+				<Image Source="menu_h.png" HorizontalOptions="Start" BackgroundColor="Transparent" HeightRequest="20" WidthRequest="20" VerticalOptions="Center">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer Tapped="MenuClicked" />
+					</Image.GestureRecognizers>
+				</Image>
+				<Grid HorizontalOptions="FillAndExpand">
+					<Entry x:Name="_direccion" Placeholder="BUSCAR" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="25,0,8,0" HorizontalTextAlignment="Start" IsVisible="true" FontSize="13" />
+					<ActivityIndicator x:Name="_loadingAddress" Color="#646464" IsVisible="true" IsRunning="true" VerticalOptions="Center" HorizontalOptions="Center" />
+				</Grid>
+			</StackLayout>
+			<StackLayout x:Name="_buttonsContainer" Spacing="5" VerticalOptions="End" HorizontalOptions="End" Padding="10" IsVisible="true">
+				<ffimageloading:CachedImage x:Name="_serviceImage" Source="standard.png" HeightRequest="45" WidthRequest="45" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true">
+					<ffimageloading:CachedImage.Transformations>
+						<fftransformations:CircleTransformation />
+					</ffimageloading:CachedImage.Transformations>
+					<ffimageloading:CachedImage.GestureRecognizers>
+						<TapGestureRecognizer Tapped="ServiceOptions" />
+					</ffimageloading:CachedImage.GestureRecognizers>
+				</ffimageloading:CachedImage>
+				<ffimageloading:CachedImage Source="places.png" HeightRequest="45" WidthRequest="45" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true">
+					<ffimageloading:CachedImage.Transformations>
+						<fftransformations:CircleTransformation />
+					</ffimageloading:CachedImage.Transformations>
+					<ffimageloading:CachedImage.GestureRecognizers>
+						<TapGestureRecognizer Tapped="ShowCurrentLocation" />
+					</ffimageloading:CachedImage.GestureRecognizers>
+				</ffimageloading:CachedImage>
+			</StackLayout>
+			<StackLayout x:Name="_serviceDialog" IsVisible="false" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#66000000">
+				<StackLayout VerticalOptions="Center" Padding="0" Spacing="0">
+					<Frame BackgroundColor="White" Padding="5" Margin="10">
+						<Frame.Content>
+							<StackLayout VerticalOptions="Center" Padding="0" Spacing="0">
+								<Label FontSize="19" TextColor="#6C6C6C" Text="Selecciona el servicio que necesitas" HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="5,10,5,10" />
+								<Grid x:Name="_servExpress" HorizontalOptions="FillAndExpand" ColumnSpacing="8" Padding="8" Margin="0">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="60" />
+										<ColumnDefinition Width="1*" />
+									</Grid.ColumnDefinitions>
+									<Image Grid.Column="0" Grid.Row="0" Source="express.png" VerticalOptions="Center" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
+									<Label Grid.Column="1" Grid.Row="0" FontSize="17" TextColor="#6C6C6C" Text="Servicio express" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+									<Grid.GestureRecognizers>
+										<TapGestureRecognizer Tapped="ServiceClicked" />
+									</Grid.GestureRecognizers>
+								</Grid>
+								<Grid x:Name="_servStandard" HorizontalOptions="FillAndExpand" ColumnSpacing="8" Padding="4" Margin="0">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="60" />
+										<ColumnDefinition Width="1*" />
+									</Grid.ColumnDefinitions>
+									<Image Grid.Column="0" Grid.Row="0" Source="standard.png" VerticalOptions="Center" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
+									<Label Grid.Column="1" Grid.Row="0" FontSize="17" TextColor="#6C6C6C" Text="Standard" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+									<Grid.GestureRecognizers>
+										<TapGestureRecognizer Tapped="ServiceClicked" />
+									</Grid.GestureRecognizers>
+								</Grid>
+								<Grid x:Name="_servMariachi" HorizontalOptions="FillAndExpand" ColumnSpacing="8" Padding="4" Margin="0">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="60" />
+										<ColumnDefinition Width="1*" />
+									</Grid.ColumnDefinitions>
+									<Image Grid.Column="0" Grid.Row="0" Source="mariachi.png" VerticalOptions="Center" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
+									<Label Grid.Column="1" Grid.Row="0" FontSize="17" TextColor="#6C6C6C" Text="Mariachi" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+									<Grid.GestureRecognizers>
+										<TapGestureRecognizer Tapped="ServiceClicked" />
+									</Grid.GestureRecognizers>
+								</Grid>
+								<Grid x:Name="_servComida" HorizontalOptions="FillAndExpand" ColumnSpacing="8" Padding="4" Margin="0">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="60" />
+										<ColumnDefinition Width="1*" />
+									</Grid.ColumnDefinitions>
+									<Image Grid.Column="0" Grid.Row="0" Source="comida.png" VerticalOptions="Center" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
+									<Label Grid.Column="1" Grid.Row="0" FontSize="17" TextColor="#6C6C6C" Text="Comida" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+									<Grid.GestureRecognizers>
+										<TapGestureRecognizer Tapped="ServiceClicked" />
+									</Grid.GestureRecognizers>
+								</Grid>
+								<Grid x:Name="_servLavadoDeAuto" HorizontalOptions="FillAndExpand" ColumnSpacing="8" Padding="4" Margin="0">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="60" />
+										<ColumnDefinition Width="1*" />
+									</Grid.ColumnDefinitions>
+									<Image Grid.Column="0" Grid.Row="0" Source="lavado.png" VerticalOptions="Center" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
+									<Label Grid.Column="1" Grid.Row="0" FontSize="17" TextColor="#6C6C6C" Text="Lavado de auto" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+									<Grid.GestureRecognizers>
+										<TapGestureRecognizer Tapped="ServiceClicked" />
+									</Grid.GestureRecognizers>
+								</Grid>
+							</StackLayout>
+						</Frame.Content>
+					</Frame>
+				</StackLayout>
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer Tapped="DismissServiceDialog" />
+				</StackLayout.GestureRecognizers>
+			</StackLayout>
+			<StackLayout x:Name="_confirmDialog" IsVisible="false" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#66000000">
+				<StackLayout VerticalOptions="Center" Padding="0" Spacing="0" HorizontalOptions="FillAndExpand">
+					<Frame BackgroundColor="White" Padding="0" Margin="10" HorizontalOptions="FillAndExpand">
+						<Frame.Content>
+							<StackLayout VerticalOptions="Center" Padding="0" Spacing="0" HorizontalOptions="FillAndExpand">
+								<Label FontSize="19" TextColor="#000" Text="¿Qué hacemos por ti?" HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="8,10,8,10" />
+								<BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" BackgroundColor="#FE7400" Margin="8,10,8,10" />
+								<Entry Placeholder="Escribe algo..." FontSize="18" Margin="8,10,8,10" />
+								<Label TextColor="#757575" Text="Desde:" FontAttributes="Bold" FontSize="18" Margin="8,10,8,10" />
+								<Entry x:Name="_desdeEntry" Placeholder="Calle No., Colonia" FontSize="18" Margin="8,10,8,10" WidthRequest="220" />
+								<Label TextColor="#757575" Text="Hacia:" FontAttributes="Bold" FontSize="18" Margin="8,10,8,10" />
+								<Entry x:Name="_hastaEntry" Placeholder="Calle No., Colonia" FontSize="18" Margin="8,10,8,10" WidthRequest="220" />
+								<Button BackgroundColor="#FE7400" Text="SOLICITAR" TextColor="White" HorizontalOptions="FillAndExpand" HeightRequest="45" Margin="0" Clicked="SolicitarServicioClicked" />
+							</StackLayout>
+						</Frame.Content>
+					</Frame>
+				</StackLayout>
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer Tapped="DismissConfirmDialog" />
+				</StackLayout.GestureRecognizers>
+			</StackLayout>
+			<StackLayout x:Name="_contSeguimiento" IsVisible="false" VerticalOptions="End" Spacing="0">
+				<Grid>
+					<Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="90" RowSpacing="0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="1*" />
+							<RowDefinition Height="1" />
+							<RowDefinition Height="1*" />
+						</Grid.RowDefinitions>
+						<BoxView Grid.Row="0" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+						<BoxView Grid.Row="1" HorizontalOptions="FillAndExpand" BackgroundColor="#FE7400" />
+						<BoxView Grid.Row="2" HorizontalOptions="FillAndExpand" BackgroundColor="White" />
+					</Grid>
+					<ffimageloading:CachedImage x:Name="_imageView" Source="addPhoto.png" HeightRequest="90" WidthRequest="90" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true">
+						<ffimageloading:CachedImage.Transformations>
+							<fftransformations:CircleTransformation />
+						</ffimageloading:CachedImage.Transformations>
+					</ffimageloading:CachedImage>
+				</Grid>
+				<StackLayout HorizontalOptions="FillAndExpand" Padding="8" BackgroundColor="White">
+					<Label Text="Tu kourer:" TextColor="#6C6C6C" FontSize="17" HorizontalOptions="Center" />
+					<Label x:Name="_nombreKourer" Text="Oscar B" TextColor="#FE7400" FontSize="18" HorizontalOptions="Center" />
+					<Grid HorizontalOptions="FillAndExpand">
+						<Label Grid.Column="0" x:Name="_tiempo" Text="0:24min" TextColor="#FE7400" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center" />
+						<Label Grid.Column="1" x:Name="_distancia" Text="0.2km" TextColor="#FE7400" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center" />
+						<ffimageloading:CachedImage Grid.Column="2" Source="card.png" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" />
+					</Grid>
+				</StackLayout>
+				<Grid ColumnSpacing="0">
+					<StackLayout Grid.Column="0" Padding="8" BackgroundColor="#00BB77" HorizontalOptions="FillAndExpand">
+						<ffimageloading:CachedImage Source="phone.png" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" />
+						<StackLayout.GestureRecognizers>
+							<TapGestureRecognizer Tapped="CallClicked" />
+						</StackLayout.GestureRecognizers>
+					</StackLayout>
+					<StackLayout Grid.Column="1" Padding="8" BackgroundColor="#F7412D" HorizontalOptions="FillAndExpand">
+						<ffimageloading:CachedImage Source="cross.png" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center" VerticalOptions="Center" DownsampleToViewSize="true" />
+						<StackLayout.GestureRecognizers>
+							<TapGestureRecognizer Tapped="CancelClicked" />
+						</StackLayout.GestureRecognizers>
+					</StackLayout>
+				</Grid>
+			</StackLayout>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

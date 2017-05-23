@@ -1,0 +1,50 @@
+﻿<Properties StartupConfiguration="{6F956F7E-B30A-40E4-8FCE-6655E978EB3E}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Kour/Data/Services/Services.cs">
+    <Files>
+      <File FileName="Kour/FodyWeavers.xml" Line="1" Column="1" />
+      <File FileName="Kour/App.xaml.cs" Line="18" Column="3" />
+      <File FileName="Kour/Data/Model/EventoViaje.cs" Line="79" Column="3" />
+      <File FileName="Kour/Data/Model/Tarjeta.cs" Line="23" Column="9" />
+      <File FileName="Kour/Helpers/PropertiesManager.cs" Line="81" Column="5" />
+      <File FileName="Kour/Data/Model/Cliente.cs" Line="1" Column="1" />
+      <File FileName="Kour/Data/Services/Services.cs" Line="252" Column="6" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Kour" expanded="True">
+            <Node name="Kour" expanded="True">
+              <Node name="Packages" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="Model" expanded="True" />
+                <Node name="Services" expanded="True">
+                  <Node name="Services.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="Forms" expanded="True">
+                <Node name="Content Pages" expanded="True">
+                  <Node name="Login" expanded="True">
+                    <Node name="LoginPage.xaml" expanded="True" />
+                  </Node>
+                  <Node name="Mapa" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Helpers" expanded="True" />
+              <Node name="App.xaml" expanded="True" />
+            </Node>
+            <Node name="Kour.iOS" expanded="True">
+              <Node name="Packages" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Kour.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.D516CC0F-1EEB-4194-BF63-504EF0E6C504" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
