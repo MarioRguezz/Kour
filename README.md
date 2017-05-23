@@ -1,2 +1,2 @@
 # Kour
-Kour iOS application 
+Kour iOS application developed in Xamarin  
